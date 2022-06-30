@@ -1,0 +1,32 @@
+{
+  "name": "duck-duck-docker",
+  "version": "1.0.0",
+  "description": "This is the docker demo repo, which uses expressjs server and redis service to demonstrate how to write scalable dockerized apps",
+  "main": "./server/server.js",
+  "config": {
+    "env": ".env.local"
+  },
+  "scripts": {
+    "server:start": "dotenv -e $npm_package_config_env -- npm start --prefix server/",
+    "redis:start": "dotenv -e $npm_package_config_env -- bash -c 'docker run --name redis -p $REDIS_PORT:$REDIS_PORT -d --rm redis'",
+    "redis:stop": "docker stop redis"
+  },
+  "dependencies": {
+    "dotenv-cli": "^5.1.0"
+  },
+  "keywords": [
+    "docker",
+    "expressjs",
+    "node",
+    "server",
+    "docker-compose",
+    "redis",
+    "services",
+    "containers"
+  ],
+  "author": {
+    "name": "Gourav Khator",
+    "email": "gouravkhator9@gmail.com"
+  },
+  "license": "MIT"
+}
