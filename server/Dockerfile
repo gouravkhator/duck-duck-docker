@@ -17,4 +17,5 @@ COPY ./ ./
 ENTRYPOINT [ "npm", "start"]
 
 FROM server-${NODE_ENV} AS server
-EXPOSE 8081
+# this SERVER_PORT is passed in the environment, so it works
+EXPOSE $SERVER_PORT
