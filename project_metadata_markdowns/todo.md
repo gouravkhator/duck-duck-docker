@@ -8,7 +8,5 @@
 
 ## Others
 
-- [ ] Docker Notes to write..
-- [ ] In the README.md file, in the section when running using only docker, we should pass the environment variable file too, in the commands.
 - [ ] Try deploying this simple dockerized application to heroku/netlify/other platforms.
-- [ ] Have to add reactjs in future, and complexify expressjs server to have every feature in the server.
+- [ ] Have to add reactjs or other frontend framework in future, and add other expressjs server features.

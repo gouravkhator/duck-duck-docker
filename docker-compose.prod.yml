@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  backend:
+    image: stran-backend
+    container_name: backend
+    env_file:
+      - ./.env.docker
+    build:
+      context: ./server
+      args:
+        - NODE_ENV=production
+      target: server
+    # healthcheck:
+    #   test: "curl --fail -s http://localhost:8081/ || exit 1"
+    #   interval: 10s
+    #   timeout: 1s
+    #   retries: 3
+    depends_on:
+      - redis-server
+    ports:
+      - "$SERVER_PORT:$SERVER_PORT"
+    # deploy:
+    #   resources:
+    #     limits:
+          # cpus: "0.3"
+          # memory: 50M
+
+  redis-server:
+    container_name: redis-server
+    image: redis:4.0.6-alpine
+    restart: always
+    ports:
+      - "$REDIS_PORT:$REDIS_PORT"

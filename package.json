@@ -4,12 +4,22 @@
   "description": "This is the docker demo repo, which uses expressjs server and redis service to demonstrate how to write scalable dockerized apps",
   "main": "./server/server.js",
   "config": {
-    "env": ".env.local"
+    "env": ".env.local",
+    "env_docker": ".env.docker"
   },
   "scripts": {
+    "full-install": "npm i && npm i --prefix server",
     "server:start": "dotenv -e $npm_package_config_env -- npm start --prefix server/",
     "redis:start": "dotenv -e $npm_package_config_env -- bash -c 'docker run --name redis -p $REDIS_PORT:$REDIS_PORT -d --rm redis'",
-    "redis:stop": "docker stop redis"
+    "redis:stop": "docker stop redis",
+    "docker:dev:compose": "docker-compose -f docker-compose.dev.yml --env-file $npm_package_config_env_docker",
+    "docker:dev:run": "npm run docker:dev:compose -- up",
+    "docker:dev:build": "npm run docker:dev:compose -- up --build",
+    "docker:dev:stop": "npm run docker:dev:compose -- down",
+    "docker:prod:compose": "docker-compose -f docker-compose.prod.yml --env-file $npm_package_config_env_docker",
+    "docker:prod:run": "npm run docker:prod:compose -- up",
+    "docker:prod:build": "npm run docker:prod:compose -- up --build",
+    "docker:prod:stop": "npm run docker:prod:compose -- down"
   },
   "dependencies": {
     "dotenv-cli": "^5.1.0"
@@ -28,5 +38,5 @@
     "name": "Gourav Khator",
     "email": "gouravkhator9@gmail.com"
   },
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

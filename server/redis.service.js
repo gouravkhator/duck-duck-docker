@@ -9,8 +9,8 @@ async function getRedisClient() {
     return client;
   } else {
     // process env values are all strings only, whether we declare in CLI args or in .env file
-    let redisHost = process.env.REDIS_HOST || "localhost";
-    let redisPort = process.env.REDIS_PORT || 6379;
+    const redisHost = process.env.REDIS_HOST || "localhost";
+    const redisPort = process.env.REDIS_PORT || 6379;
 
     client = redis.createClient({
       url: `redis://${redisHost}:${redisPort}`,
